@@ -1,0 +1,24 @@
+{
+  "galaxy.meteor.com": {
+    "env": {
+      "ROOT_URL": "https://events.urbanburn.se",
+      "MONGO_URL": "mongodb://nodalub:loveGatheringzANDstreamzz@ds231549.mlab.com:31549/nodalub_mlab"
+    }
+  },
+  "AWSs3": {
+		"AWSAccessKeyId": "AKIAJYQDRGKLMLBXRZAA",
+	  "AWSSecretAccessKey": "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",
+		"AWSRegion": "eu-central-1",
+		"AWSBucketName": "nodal-gatherings"
+	},
+  "oAuth": {
+    "facebook": {
+      "appId": "842343152639206",
+      "secret": "0a470c2f5a64781be7f5e9d249d97062"
+    },
+    "google": {
+      "clientId": "808034619888-u1vmq73upcvg38n7vgtoc4h64id0pfit.apps.googleusercontent.com",
+      "secret": "rguMgEXykB5fGBRTFJ7_9D5Y"
+    }
+  }
+}

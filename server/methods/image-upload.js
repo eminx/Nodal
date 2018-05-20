@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-const s3Settings = Meteor.settings.AWSs3;
+const s3Settings = Meteor.settings.AWSs3;  
+console.log("s3Settings", s3Settings, s3Settings.AWSAccessKeyId);
 
 Slingshot.fileRestrictions("gatheringImageUpload", {
   allowedFileTypes: ["image/png", "image/jpeg"],
@@ -23,8 +24,8 @@ Slingshot.createDirective("gatheringImageUpload", Slingshot.S3Storage, {
   },
 
   key: function (file) {
-    var currentUserId = Meteor.user().emails[0].address;
-    return currentUserId + "/" + file.name;
+    var user = Meteor.users.findOne(this.userId);
+    return user.username + "/" + file.name;
   }
 
 });

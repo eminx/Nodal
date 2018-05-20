@@ -53,6 +53,7 @@ class NewGathering extends React.Component {
     
     upload.send(uploadableImage, (error, downloadUrl) => {
       if (error) {
+        message.error('Error uploading:', error);
         console.error('Error uploading:', error);
       } else {
         this.setState({
@@ -96,14 +97,14 @@ class NewGathering extends React.Component {
           />
         </div>
       )
-    }
+    };
 
     const { modalConfirm, values, isLoading, isSuccess, newGatheringId, uploadedImage, uploadableImage, uploadableImageLocal } = this.state;
 
     if (isSuccess) {
       successCreation();
       return <Redirect to={`/gathering/${newGatheringId}`} />
-    }
+    };
 
     return (
     	<div style={{padding: 24}}>
@@ -144,8 +145,8 @@ class NewGathering extends React.Component {
         }
 
        </div>
-    )
-  }
+    );
+  };
 }
 
 export default NewGathering;

@@ -13,10 +13,10 @@ Meteor.methods({
 		check(formValues.isRSVPrequired, Boolean);
 		check(imageUrl, String);
 		
-		const userId = Meteor.userId();
+		const user = Meteor.user();
 		try {
-			const add = Gatherings.insert({
-				authorId: userId,
+			const gatheringId = Gatherings.insert({
+				authorId: user._id,
 				attendees: [],
 				authorName: 'someone',
 				title: formValues.title,
@@ -36,7 +36,10 @@ Meteor.methods({
 				isPublished: false,
 				creationDate: new Date()
 			});
-			return add;
+			if (user.isSuperAdmin) {
+				Meteor.call('publishGathering', gatheringId);
+			}
+			return gatheringId;
 		} catch(e) {
 			throw new Meteor.Error(e, "Couldn't add to Collection");
 		}

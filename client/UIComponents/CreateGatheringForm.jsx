@@ -74,7 +74,7 @@ class CreateGatheringForm extends React.Component {
 
     return (
       <div className="create-gathering-form">
-        <h3>Please enter the details about your gathering</h3>
+        <h3>Please enter the details about your activity</h3>
         <Divider />
         <Form onSubmit={this.handleSubmit}>
 

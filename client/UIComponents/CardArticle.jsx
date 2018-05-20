@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Icon, Avatar, Row, Col, Button, Divider } from 'antd/lib';
 const { Meta } = Card;
 import moment from 'moment';
+import { getInitials } from '../functions';
 
 const IconText = ({ type, text }) => (
   <span>
@@ -25,6 +26,8 @@ class CardArticle extends React.Component {
       :
         null;
 
+    const eventDate = moment(item.startDate).format('Do MMMM dddd');
+
     return (
       <Card
         title={<div><h1>{item.title}</h1><h3 style={{color: 'rgba(0,0,0,.65)'}}>{item.shortDescription}</h3></div>}
@@ -32,7 +35,7 @@ class CardArticle extends React.Component {
         cover={<img alt="example" src={item.imageUrl} />}
       >
         <Meta
-          avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+          avatar={<Avatar>{getInitials(item.authorName)}</Avatar>}
           title={<span>{item.room}, Noden<br />{eventTimes}</span>}
           description={item.longDescription}
         />

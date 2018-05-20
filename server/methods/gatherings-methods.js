@@ -92,7 +92,7 @@ Meteor.methods({
 						});
 						return true
 					} catch(err) {
-						throw new Meteor.Error(e, "Couldn't update the Collection");
+						throw new Meteor.Error(err, "Couldn't update the Collection");
 					}
 					return true;
 				} catch(err) {
@@ -100,8 +100,8 @@ Meteor.methods({
 					throw new Meteor.Error(err, "Couldn't update the Collection");
 				}
 			} else {
-				console.log(err);
-				throw new Meteor.Error(err, "Sorry the capacity is full");
+				// console.log(err);
+				throw new Meteor.Error("Sorry the capacity is full");
 			}
 		}
 	},

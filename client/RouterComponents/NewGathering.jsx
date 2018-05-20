@@ -7,10 +7,10 @@ import Evaporate from 'evaporate';
 import AWS from 'aws-sdk';
 
 const successCreation = () => {
-  message.success('Your event is successfully created', 6);
+  message.success('Your activity is successfully created', 6);
 };
 
-const sideNote = "Please check if a corresponding time and room is not taken already. \n It is your responsibility to make sure that there's no overlapping gatherings."
+const sideNote = "Please check if a corresponding time and room is not taken already. \n It is your responsibility to make sure that there's no overlapping activities."
 
 class NewGathering extends React.Component {
 	state={
@@ -107,7 +107,7 @@ class NewGathering extends React.Component {
 
     return (
     	<div style={{padding: 24}}>
-        <h1>Organise a gathering</h1>
+        <h1>Organise an activity</h1>
         <Row gutter={48}>
           <Col xs={24} sm={24} md={16}>
     	      <CreateGatheringForm

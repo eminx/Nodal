@@ -58,7 +58,10 @@ class Nodal extends React.Component {
 				          title={<Link to={`/gathering/${item._id}`}>{item.title}</Link>}
 				          description={item.shortDescription}
 				        />
-				        {shortenDescription(item.longDescription) + '...'}
+				        {item.longDescription 
+				        	? (shortenDescription(item.longDescription) + '...')
+				        	: null
+				        }
 				      </List.Item>
 			      </Card>
 			    )}

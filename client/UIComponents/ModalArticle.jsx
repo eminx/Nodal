@@ -1,12 +1,14 @@
 import React from 'react';
 import { Modal, Card, Icon, Avatar, Spin } from 'antd/lib';
 const { Meta } = Card;
+import { getInitials } from '../functions';
 
 class ModalArticle extends React.Component {
 	
   render() {
 
     const { isLoading, item, imageSrc } = this.props;
+    const username = Meteor.user().username || 'AB';
 
     return (
       <Modal
@@ -24,7 +26,7 @@ class ModalArticle extends React.Component {
               cover={<img alt="example" src={imageSrc} />}
             >
               <Meta
-                avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                avatar={<Avatar>{username}</Avatar>}
                 title={`${item.room}, Noden`}
                 description={item.longDescription}
               />

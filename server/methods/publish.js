@@ -60,3 +60,12 @@ Meteor.publish('gathering', function (id) {
     }
   })*/;
 });
+
+Meteor.publish('images', function () {
+  return Images.find({}, {
+    // fields: {
+      // isSentForReview: 0,
+      // phoneNumber: 0
+    // }
+  });
+});

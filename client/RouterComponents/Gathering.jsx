@@ -54,10 +54,10 @@ class Gathering extends React.Component {
     }
   }
 
-  toggleAttendance = (userId, e) => {
+  toggleAttendance = (username, e) => {
     const { gatheringData } = this.props;
     e.preventDefault();
-    Meteor.call('toggleAttendanceAsHost', gatheringData._id, userId, (err, res) => {
+    Meteor.call('toggleAttendanceAsHost', gatheringData._id, username, (err, res) => {
       if (err) {
         message.error("It didn't work :/");
         console.log(err);
@@ -199,15 +199,18 @@ class Gathering extends React.Component {
                           <h3>Attendees</h3>
                           <p>Please uncheck for those who did not attend</p>
                           <List bordered itemLayout="horizontal" size="small">
-                            {gatheringData.attendees.map((attendee, i) => (
-                              <ListItem key={attendee.userId + i}>
-                                <List.Item.Meta
-                                  avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
-                                  title={<span className={!attendee.didNotAttend ? 'bold-font' : ''}>{attendee.userId}</span>}
-                                />
-                                <Checkbox checked={!attendee.didNotAttend} onChange={this.toggleAttendance.bind(this, attendee.userId)} />
-                              </ListItem>
-                            ))}
+                            {gatheringData.attendees.map((attendee, i) => {
+                              attendee.username ? null : attendee.username = 'someone';
+                              return(
+                                <ListItem key={attendee.username + i}>
+                                  <List.Item.Meta
+                                    avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                                    title={<span className={!attendee.didNotAttend ? 'bold-font' : ''}>{attendee.username}</span>}
+                                  />
+                                  <Checkbox checked={!attendee.didNotAttend} onChange={this.toggleAttendance.bind(this, attendee.username)} />
+                                </ListItem>
+                              )
+                            })}
                           </List>
                         </div>
                       : gatheringData.isPublished

@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { Link, Redirect } from 'react-router-dom';
 import { Row, Col, Radio, Alert, Spin, Button, Divider } from 'antd/lib';
 import BigCalendar from 'react-big-calendar';
@@ -37,6 +38,14 @@ class Home extends React.Component {
   	const gatherings = this.props.gatheringsList;
   	const images = this.props.imagesArray;
   	const { mode, goto } = this.state;
+    const gatheringsFuture = [];
+
+    gatherings.filter(gathering => {
+      const yesterday = moment(new Date()).add(-1, 'days');
+      if (moment(gathering.startDate).isAfter(yesterday)) {
+        gatheringsFuture.push(gathering);
+      }
+    });
 
   	if (goto) {
       return <Redirect to={`/gathering/${goto}`} />
@@ -98,7 +107,7 @@ class Home extends React.Component {
   			    			<Nodal 
   		    					push={this.props.history.push}
   		    					images={this.props.imagesArray}
-  		    					gatherings={gatherings}
+  		    					gatherings={gatheringsFuture}
   		    				/>
                 </div>
     				}
